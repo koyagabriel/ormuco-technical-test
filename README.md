@@ -1,7 +1,7 @@
 # ormuco-technical-test
 
 ## Geo Distributed LRU Cache
-The Cache library is a cache designed to be used in a distributed environment, that is , an environment setup with multiple machines separated by geographical locations. It replicates data across geolocation, maintains data consistency across regions and writes these data in real time.
+The Cache library is a cache designed to be used in a distributed environment, that is , an environment setup with multiple machines separated by geographical locations. It replicates data across geolocation, maintains data consistency across regions and writes these data in real time by leveraging on kafka's messaging, storage and real time replication functionalities.
 
 ## Design
 
