@@ -129,3 +129,9 @@ class LRUCache:
                 self.get(_key, push_to_queue=False)
             elif event_type == self.UPDATE:
                 self.update(_key, value, push_to_queue=False)
+
+    def _cache_clear(self):
+        with self._lock:
+            self._cache.clear()
+            self._root[:] = [self._root, self._root, None, None]
+            self._full = False
