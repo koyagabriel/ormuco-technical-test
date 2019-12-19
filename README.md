@@ -38,9 +38,24 @@ Any data type can be stored in the cache.
 
 ### Operation Supported
 The cache supports the following operations:
-- get(key): gets the value of the key if the key exists in the cache, otherwise it returns None
+- get(key): gets the value of the key if the key exists in the cache, otherwise it returns None.
+  ```
+  from lrucache import create_cache
+  cache_instance = create_cache(max_size=5, broker="localhost:9092")
+  cache_instance.get(key)
+  ```
 - add(key, value): inserts the value if the key is not present. When the cache reaches its capacity, it invalidates the least recently used item before inserting a new item.
+  ```
+  from lrucache import create_cache
+  cache_instance = create_cache(max_size=5, broker="localhost:9092")
+  cache_instance.add(key, value)
+  ```
 - update(key, value): sets the value of a key to a new value if the key exits in the cache.
+  ```
+  from lrucache import create_cache
+  cache_instance = create_cache(max_size=5, broker="localhost:9092")
+  cache_instance.update(key, value)
+  ```
 
 ### Data Structures used
 - Dict: This data structure was used in order to achieve a O(1) lookup when performing the get and update operations.
