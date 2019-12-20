@@ -63,5 +63,4 @@ The cache supports the following operations:
 
 
 ### Task yet to be completed
-- cache expiration
 - writing test although it has been tested manually.

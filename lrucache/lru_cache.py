@@ -1,6 +1,7 @@
 import json
 from threading import RLock
 from collections import deque
+from datetime import timedelta, datetime
 
 
 class LRUCache:
@@ -9,7 +10,7 @@ class LRUCache:
     UPDATE = 'UPDATE'
     GET = 'GET'
 
-    def __init__(self, max_size=5):
+    def __init__(self, max_size=5, exp_time_in_min=10):
 
         if isinstance(max_size, int):
             if max_size < 0:
@@ -24,6 +25,7 @@ class LRUCache:
         self._root[:] = [self._root, self._root, None, None]
         self._event_queue = deque()
         self._lock = RLock()
+        self._exp_time = datetime.utcnow() + timedelta(minutes=exp_time_in_min)
 
     @property
     def cache(self):
@@ -135,3 +137,9 @@ class LRUCache:
             self._cache.clear()
             self._root[:] = [self._root, self._root, None, None]
             self._full = False
+
+    def start_expiration_timer(self):
+        while datetime.utcnow() < self._exp_time:
+            continue
+
+        self._cache_clear()
